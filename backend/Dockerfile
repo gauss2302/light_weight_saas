@@ -1,17 +1,20 @@
-FROM node:16-alpine
+# Use Node.js 18 Alpine as the base image
+FROM node:18-alpine
 
-WORKDIR /usr/src/app
+# Set the working directory
+WORKDIR /app
 
-# Install nodemon globally
-RUN npm install -g nodemon
-
+# Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install
+# Install dependencies (including dev dependencies)
+RUN npm install --production=false
 
+# Copy project files
 COPY . .
 
-EXPOSE 5489
+# Expose the application port
+EXPOSE ${PORT:-5489}
 
-CMD ["npm", "run", "dev"]
+# Command to start the application
+CMD ["npm", "start"]
