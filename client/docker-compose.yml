@@ -1,0 +1,21 @@
+services:
+  frontend:
+    container_name: frontend
+    build:
+      context: .
+      target: development
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_BACKEND_URL=${NEXT_PUBLIC_BACKEND_URL}
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
