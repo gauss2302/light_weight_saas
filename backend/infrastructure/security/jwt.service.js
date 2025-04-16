@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const config = require('/backend/config/app');
+const config = require('../../config/app');
 
 
 class JwtService {

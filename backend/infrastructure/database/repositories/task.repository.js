@@ -1,6 +1,6 @@
 const TaskEntity = require("../../../domain/entities/task.entity");
 const ITaskRepository = require('../../../domain/interfaces/repositories/task-repository.interface');
-const { Task } = require('backend/models/task');
+const { Task } = require('../../../models/task');
 class TaskRepository extends ITaskRepository {
     /**
      * Find task by ID

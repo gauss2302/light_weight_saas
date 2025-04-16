@@ -1,4 +1,5 @@
 const bcrypt = require("bcryptjs");
+const path = require('path');
 
 class LoginUserUseCase {
     constructor(userRepository, tokenRepository, jwtService) {
@@ -9,40 +10,39 @@ class LoginUserUseCase {
 
     /**
      * Login user and generates tokens
-     * @param {import("backend/application/dtos/auth.dto").LoginDto} credentials
-     * @returns {Promise<import("backend/application/dtos/auth.dto").AuthResponseDto>}
+     * @param {Object} credentials - Login credentials
+     * @returns {Promise<Object>} - Authentication response with token and user
      */
-
     async execute(credentials) {
         const userEntity = await this.userRepository.findByEmail(credentials.email);
 
         if (!userEntity) {
-            const error = new Error("Email already exists");
+            const error = new Error("Invalid credentials");
             error.status = 401;
             throw error;
         }
 
-        //passowrd validation
+        // Password validation
         const isValidPassword = await bcrypt.compare(credentials.password, userEntity.password);
 
         if (!isValidPassword) {
-            const error = new Error("Passwords do not match");
+            const error = new Error("Invalid credentials");
             error.status = 401;
             throw error;
         }
 
-        // generate tokens
+        // Generate tokens
         const accessToken = this.jwtService.generateAccessToken({
             userId: userEntity.id,
             email: userEntity.email,
         });
 
-        //create refresh token
+        // Create refresh token
         const refreshToken = this.jwtService.generateRefreshToken({
             userId: userEntity.id,
         });
 
-        // create token entiry and save
+        // Create token entity and save
         const tokenEntity = {
             token: refreshToken,
             type: "refresh",
@@ -51,6 +51,13 @@ class LoginUserUseCase {
 
         await this.tokenRepository.deleteByUserId(userEntity.id, 'refresh');
         await this.tokenRepository.create(tokenEntity);
+
+        // Return authentication response
+        return {
+            token: accessToken,
+            refreshToken: refreshToken,
+            user: userEntity.toJSON()
+        };
     }
 }
 

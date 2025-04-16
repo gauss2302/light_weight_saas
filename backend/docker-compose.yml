@@ -10,7 +10,7 @@ services:
     ports:
       - "${PORT:-5489}:${PORT:-5489}"
     volumes:
-      # Mount the entire project directory, preserving structure
+      # Mount the entire project directory
       - .:/app
       # Preserve node_modules from the container
       - /app/node_modules

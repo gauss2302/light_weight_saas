@@ -1,4 +1,8 @@
-const { Container } = require('/backend/infrastructure/dependency-injection/index');
+const path = require('path');
+
+// Get the base path and load the container dynamically
+const basePath = path.resolve(__dirname, '../../../../..');
+const Container = require(path.join(basePath, 'backend', 'infrastructure', 'dependency-injection', 'index'));
 
 /**
  * Authentication middleware

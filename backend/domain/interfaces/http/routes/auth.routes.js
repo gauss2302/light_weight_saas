@@ -1,5 +1,5 @@
 const express = require('express');
-const { Container } = require('backend/infrastructure/dependency-injection/index');
+const { Container } = require('../../../../infrastructure/dependency-injection/index');
 const authMiddleware = require('../middlewares/auth.middleware');
 const router = express.Router();
 

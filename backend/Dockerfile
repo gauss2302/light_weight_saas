@@ -1,8 +1,8 @@
 # Use Node.js 18 Alpine as the base image
 FROM node:18-alpine
 
-# Set the working directory to match expected structure
-WORKDIR /
+# Set the working directory inside the container
+WORKDIR /app
 
 # Copy package files
 COPY package*.json ./
@@ -16,5 +16,5 @@ COPY . .
 # Expose the application port
 EXPOSE ${PORT:-5489}
 
-# Command to start the application (adjust if needed based on your package.json scripts)
+# Command to start the application
 CMD ["node", "app/server.js"]

@@ -1,5 +1,5 @@
 const IProjectRepository = require('../../../domain/interfaces/repositories/project-repository.interface');
-const { Project } = require('/backend/models/project');
+const { Project } = require('../../../models/project');
 const ProjectEntity = require('../../../domain/entities/project.entity');
 
 class ProjectRepository extends IProjectRepository {

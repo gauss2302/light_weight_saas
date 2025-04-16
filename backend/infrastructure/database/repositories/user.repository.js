@@ -1,6 +1,6 @@
-const IUserRepository = require("/backend/domain/interfaces/repositories/user-repository.interface")
-const {User} = require("backend/models/user");
-const UserEntity = require("/backend/domain/entities/user.entity");
+const IUserRepository = require("../../../domain/interfaces/repositories/user-repository.interface")
+const {User} = require("../../../models/user");
+const UserEntity = require("../../../domain/entities/user.entity");
 
 class UserRepository extends IUserRepository {
     /**
@@ -43,7 +43,7 @@ class UserRepository extends IUserRepository {
 
     /**
      * Create new user
-     * @param {UserEntity} userEntity
+     * @param {Object} userEntity
      * @returns {Promise<UserEntity>}
      */
     async create(userEntity) {

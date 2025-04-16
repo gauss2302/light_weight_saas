@@ -1,5 +1,9 @@
-const UserEntity = require("/backend/domain/entities/user.entity");
-const bcrypto = require("bcryptjs");
+const path = require('path');
+const bcrypt = require("bcryptjs");
+
+// Get the base path
+const basePath = path.resolve(__dirname, '../../../..');
+const UserEntity = require(path.join(basePath, 'backend', 'domain', 'entities', 'user.entity'));
 
 class RegisterUserUseCase {
     constructor(userRepository) {
@@ -8,7 +12,7 @@ class RegisterUserUseCase {
 
     /**
      * Register a new user
-     * @param {import("/backend/application/dtos/auth.dto").RegisterUserDto} userData
+     * @param {Object} userData - User registration data
      * @returns {Promise<UserEntity>}
      */
     async execute(userData) {

@@ -1,5 +1,5 @@
 const ITokenRepository = require('../../../domain/interfaces/repositories/token-repository.interface');
-const { Token } = require('/backend/models/token');
+const { Token } = require('../../../models/token');
 
 class TokenRepository extends ITokenRepository {
     /**
