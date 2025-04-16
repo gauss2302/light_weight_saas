@@ -1,36 +1,136 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lightweight SaaS Management Platform
 
-## Getting Started
+A modern, full-stack project management SaaS application built with clean architecture principles.
 
-First, run the development server:
+## Project Overview
+
+This application is a lightweight SaaS platform for managing projects and tasks. It includes:
+
+- Authentication system with JWT tokens
+- Project management functionality
+- Task management with drag-and-drop interface
+- Clean architecture design
+- Responsive UI
+
+## Tech Stack
+
+### Backend
+- Node.js with Express
+- PostgreSQL with Sequelize ORM
+- JWT for authentication
+- Clean Architecture pattern
+
+### Frontend
+- Next.js 14 (App Router)
+- TypeScript
+- Tailwind CSS
+- Context API for state management
+- DND Kit for drag-and-drop functionality
+
+## Architecture
+
+The project follows clean architecture principles:
+
+- **Backend**:
+    - Domain: Entities and interfaces
+    - Application: Use cases and DTOs
+    - Infrastructure: Implementation details
+    - Interfaces: HTTP controllers and routes
+
+- **Frontend**:
+    - App: Next.js app and pages
+    - Components: Reusable UI components
+    - Lib: Utilities, context, types, and API integration
+
+## Installation
+
+### Prerequisites
+- Node.js (v18+)
+- PostgreSQL
+- Docker (optional)
+
+### Setup
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/gauss2302/light_weight_saas.git
+   cd light_weight_saas
+   ```
+
+2. Backend setup:
+   ```bash
+   cd backend
+   npm install
+   cp .env.example .env  # Update with your database credentials
+   ```
+
+3. Frontend setup:
+   ```bash
+   cd client
+   npm install
+   cp .env.example .env.local  # Update with your API URL
+   ```
+
+4. Start the development servers:
+    - Backend: `npm run dev` (from the backend directory)
+    - Frontend: `npm run dev` (from the client directory)
+
+### Docker Setup (Alternative)
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+docker-compose up -d
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Authentication**:
+    - Register, login, token refresh
+    - Protected routes
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Project Management**:
+    - Create, read, update, delete projects
+    - Project status tracking
 
-## Learn More
+- **Task Management**:
+    - Create, read, update, delete tasks
+    - Drag-and-drop interface for status updates
+    - Priority levels and due dates
+    - Task filtering and organization
 
-To learn more about Next.js, take a look at the following resources:
+## API Documentation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The API follows RESTful principles with these main endpoints:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Auth**: `/api/auth/*`
+- **Projects**: `/api/projects/*`
+- **Tasks**: `/api/tasks/*`
 
-## Deploy on Vercel
+A detailed API documentation is available at `/api/docs` when running the backend server.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Backend
+- The backend can be deployed to any Node.js hosting service like Heroku, Railway, or a VPS.
+- Make sure to set proper environment variables.
+
+### Frontend
+- The Next.js frontend can be deployed to Vercel, Netlify, or any static hosting service.
+- Set the `NEXT_PUBLIC_BACKEND_URL` to point to your backend API.
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- Clean Architecture principles by Robert C. Martin
+- Next.js App Router
+- Tailwind CSS community
